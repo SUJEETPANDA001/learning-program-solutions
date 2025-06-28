@@ -1,0 +1,9 @@
+com/example/mock/FileWriter.class
+com/example/mock/Service.class
+com/example/mock/NetworkService.class
+com/example/mock/RestClient.class
+com/example/mock/FileService.class
+com/example/mock/ApiService.class
+com/example/mock/FileReader.class
+com/example/mock/NetworkClient.class
+com/example/mock/Repository.class

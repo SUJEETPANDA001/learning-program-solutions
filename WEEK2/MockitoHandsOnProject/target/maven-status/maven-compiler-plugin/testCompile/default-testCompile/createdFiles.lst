@@ -1,0 +1,6 @@
+MyServiceTest.class
+ArgumentMatcherTest.class
+MultipleReturnsTest.class
+OrderVerificationTest.class
+VoidMethodTest.class
+ExceptionVoidMethodTest.class
