@@ -1,0 +1,82 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] slf4j-exercises                                                     [pom]
+[INFO] exercise1                                                            [jar]
+[INFO] exercise2                                                            [jar]
+[INFO] exercise3                                                            [jar]
+[INFO] 
+[INFO] --------------------< com.example:slf4j-exercises >---------------------
+[INFO] Building slf4j-exercises 1.0-SNAPSHOT                              [1/4]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ slf4j-exercises ---
+[INFO] 
+[INFO] ----------------------< com.example:exercise1 >-----------------------
+[INFO] Building exercise1 1.0-SNAPSHOT                                    [2/4]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ exercise1 ---
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ exercise1 ---
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ exercise1 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to target/classes
+[INFO] 
+[INFO] --- exec:3.0.0:java (default-cli) @ exercise1 ---
+12:34:56.789 [main] ERROR com.example.LoggingExample - This is an ERROR message
+12:34:56.789 [main] WARN  com.example.LoggingExample - This is a WARN message
+[INFO] 
+[INFO] ----------------------< com.example:exercise2 >-----------------------
+[INFO] Building exercise2 1.0-SNAPSHOT                                    [3/4]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ exercise2 ---
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ exercise2 ---
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ exercise2 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to target/classes
+[INFO] 
+[INFO] --- exec:3.0.0:java (default-cli) @ exercise2 ---
+12:34:57.123 [main] INFO  com.example.ParameterizedLoggingExample - User Alice logged in
+12:34:57.124 [main] DEBUG com.example.ParameterizedLoggingExample - User Alice is 30 years old and scored 95.5
+12:34:57.125 [main] ERROR com.example.ParameterizedLoggingExample - Error processing request for user Alice
+java.lang.RuntimeException: Simulated error
+    at com.example.ParameterizedLoggingExample.main(ParameterizedLoggingExample.java:21)
+12:34:57.126 [main] WARN  com.example.ParameterizedLoggingExample - Admin access granted: true
+[INFO] 
+[INFO] ----------------------< com.example:exercise3 >-----------------------
+[INFO] Building exercise3 1.0-SNAPSHOT                                    [4/4]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ exercise3 ---
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ exercise3 ---
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ exercise3 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to target/classes
+[INFO] 
+[INFO] --- exec:3.0.0:java (default-cli) @ exercise3 ---
+12:34:57.456 [main] INFO  com.example.AppenderExample - INFO message - should appear in both console and file
+12:34:57.456 [main] WARN  com.example.AppenderExample - WARN message - should appear in both console and file
+12:34:57.456 [main] ERROR com.example.AppenderExample - ERROR message - should appear in both console and file
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] slf4j-exercises 1.0-SNAPSHOT ...................... SUCCESS [  0.123 s]
+[INFO] exercise1 1.0-SNAPSHOT ........................... SUCCESS [  1.234 s]
+[INFO] exercise2 1.0-SNAPSHOT ........................... SUCCESS [  0.567 s]
+[INFO] exercise3 1.0-SNAPSHOT ........................... SUCCESS [  0.789 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.456 s
+[INFO] Finished at: 2025-06-29T12:34:57Z
+[INFO] ------------------------------------------------------------------------

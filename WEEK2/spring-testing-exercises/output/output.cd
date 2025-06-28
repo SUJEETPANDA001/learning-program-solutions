@@ -1,0 +1,37 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< com.example:spring-testing-exercises >----------------
+[INFO] Building spring-testing-exercises 1.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ spring-testing-exercises ---
+[INFO] Deleting /project/target
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ spring-testing-exercises ---
+[INFO] Compiling 12 source files with javac [debug release 17] to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ spring-testing-exercises ---
+[INFO] Compiling 9 test source files with javac [debug release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.1.2:test (default-test) @ spring-testing-exercises ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.example.springtesting.service.CalculatorServiceTest
+[INFO] Running com.example.springtesting.service.UserServiceTest
+[INFO] Running com.example.springtesting.controller.UserControllerTest
+[INFO] Running com.example.springtesting.controller.UserControllerPostTest
+[INFO] Running com.example.springtesting.integration.IntegrationFlowTest
+[INFO] Running com.example.springtesting.service.UserNotFoundExceptionTest
+[INFO] Running com.example.springtesting.repository.UserRepositoryQueryTest
+[INFO] Running com.example.springtesting.advice.GlobalExceptionHandlerTest
+[INFO] Running com.example.springtesting.parameterized.ParameterizedCalculatorTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.482 s
+[INFO] Finished at: 2025-06-28T22:45:00+0530
+[INFO] ------------------------------------------------------------------------
