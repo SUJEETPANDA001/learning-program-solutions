@@ -1,0 +1,50 @@
+sujeetpanda@Sujeets-MacBook-Air orm_learn_project % mvn clean install  
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/opt/homebrew/Cellar/maven/3.9.10/libexec/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.example:orm-learn >------------------------
+[INFO] Building orm-learn 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] The artifact mysql:mysql-connector-java:jar:8.0.31 has been relocated to com.mysql:mysql-connector-j:jar:8.0.31: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ orm-learn ---
+[INFO] Deleting /Users/sujeetpanda/Desktop/orm_learn_project/target
+[INFO] 
+[INFO] --- resources:3.2.0:resources (default-resources) @ orm-learn ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- compiler:3.10.1:compile (default-compile) @ orm-learn ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 4 source files to /Users/sujeetpanda/Desktop/orm_learn_project/target/classes
+[INFO] 
+[INFO] --- resources:3.2.0:testResources (default-testResources) @ orm-learn ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] skip non existing resourceDirectory /Users/sujeetpanda/Desktop/orm_learn_project/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ orm-learn ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:2.22.2:test (default-test) @ orm-learn ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.2.2:jar (default-jar) @ orm-learn ---
+[INFO] Building jar: /Users/sujeetpanda/Desktop/orm_learn_project/target/orm-learn-1.0.0.jar
+[INFO] 
+[INFO] --- install:2.5.2:install (default-install) @ orm-learn ---
+[INFO] Installing /Users/sujeetpanda/Desktop/orm_learn_project/target/orm-learn-1.0.0.jar to /Users/sujeetpanda/.m2/repository/com/example/orm-learn/1.0.0/orm-learn-1.0.0.jar
+[INFO] Installing /Users/sujeetpanda/Desktop/orm_learn_project/pom.xml to /Users/sujeetpanda/.m2/repository/com/example/orm-learn/1.0.0/orm-learn-1.0.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.400 s
+[INFO] Finished at: 2025-07-03T10:23:02+05:30
+[INFO] ------------------------------------------------------------------------
+sujeetpanda@Sujeets-MacBook-Air orm_learn_project % 

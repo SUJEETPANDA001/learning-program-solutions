@@ -1,0 +1,4 @@
+com/example/ormlearn/repository/CountryRepository.class
+com/example/ormlearn/service/CountryService.class
+com/example/ormlearn/entity/Country.class
+com/example/ormlearn/OrmLearnApplication.class
