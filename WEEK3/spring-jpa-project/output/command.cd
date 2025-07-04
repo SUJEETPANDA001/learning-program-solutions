@@ -1,0 +1,858 @@
+sujeetpanda@Sujeets-MacBook-Air experiment % cd spring-jpa-project
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint:   git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint:   git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /Users/sujeetpanda/Desktop/experiment/spring-jpa-project/.git/
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % git add .
+git commit -m "Initial project setup"
+[master (root-commit) 2ac5385] Initial project setup
+ Committer: Sujeet Panda <sujeetpanda@Sujeets-MacBook-Air.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 31 files changed, 494 insertions(+)
+ create mode 100644 pom.xml
+ create mode 100644 src/main/java/com/cognizant/ormlearn/OrmLearnApplication.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/model/Country.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/model/Department.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/model/Employee.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/model/Skill.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/model/Stock.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/repository/CountryRepository.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/repository/DepartmentRepository.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/repository/EmployeeRepository.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/repository/SkillRepository.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/repository/StockRepository.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/service/DepartmentService.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/service/EmployeeService.java
+ create mode 100644 src/main/java/com/cognizant/ormlearn/service/SkillService.java
+ create mode 100644 src/main/resources/application.properties
+ create mode 100644 target/classes/application.properties
+ create mode 100644 target/classes/com/cognizant/ormlearn/OrmLearnApplication.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/model/Country.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/model/Department.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/model/Employee.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/model/Skill.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/model/Stock.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/repository/CountryRepository.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/repository/DepartmentRepository.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/repository/EmployeeRepository.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/repository/SkillRepository.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/repository/StockRepository.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/service/DepartmentService.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/service/EmployeeService.class
+ create mode 100644 target/classes/com/cognizant/ormlearn/service/SkillService.class
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % CREATE DATABASE ormlearn;
+CREATE USER 'springuser'@'localhost' IDENTIFIED BY 'springpass';
+GRANT ALL PRIVILEGES ON ormlearn.* TO 'springuser'@'localhost';
+FLUSH PRIVILEGES;
+zsh: command not found: CREATE
+zsh: command not found: CREATE
+zsh: no matches found: ormlearn.*
+zsh: command not found: FLUSH
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 9.2.0 Homebrew
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> -- Create country table
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE TABLE country(
+    ->     co_code VARCHAR(2) PRIMARY KEY,
+    ->     co_name VARCHAR(100)
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> 
+mysql> -- Create stock table
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE TABLE stock (
+    ->   st_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->   st_code VARCHAR(10), 
+    ->   st_date DATE,
+    ->   st_open DECIMAL(10,2),
+    ->   st_close DECIMAL(10,2), 
+    ->   st_volume BIGINT
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> 
+mysql> -- Import payroll schema
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SOURCE /path/to/payroll.sql;
+ERROR: 
+Failed to open file '/path/to/payroll.sql', error: 2
+mysql> 
+mysql> -- Insert sample countries
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO country VALUES 
+    -> ('BV','Bouvet Island'),
+    -> ('DJ','Djibouti'),
+    -> ('GP','Guadeloupe'),
+    -> ('GS','South Georgia and the South Sandwich Islands'),
+    -> ('LU','Luxembourg'),
+    -> ('SS','South Sudan'),
+    -> ('TF','French Southern Territories'),
+    -> ('UM','United States Minor Outlying Islands'),
+    -> ('ZA','South Africa'),
+    -> ('ZM','Zambia'),
+    -> ('ZW','Zimbabwe');
+ERROR 1046 (3D000): No database selected
+mysql> EXIT;
+Bye
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u root -p <<SQL
+heredoc> CREATE DATABASE ormlearn;
+USE ormlearn;
+CREATE USER 'springuser'@'localhost' IDENTIFIED BY 'springpass';
+GRANT ALL PRIVILEGES ON ormlearn.* TO 'springuser'@'localhost';
+FLUSH PRIVILEGES;
+SQL
+Enter password: 
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u root -p <<SQL
+CREATE DATABASE ormlearn;
+USE ormlearn;
+CREATE USER 'springuser'@'localhost' IDENTIFIED BY 'springpass';
+GRANT ALL PRIVILEGES ON ormlearn.* TO 'springuser'@'localhost';
+FLUSH PRIVILEGES;
+SQL
+Enter password: 
+ERROR 1007 (HY000) at line 1: Can't create database 'ormlearn'; database exists
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u root -p <<SQL
+CREATE DATABASE ormlearn;
+USE ormlearn;
+CREATE USER 'springuser'@'localhost' IDENTIFIED BY 'springpass';
+GRANT ALL PRIVILEGES ON ormlearn.* TO 'springuser'@'localhost';
+FLUSH PRIVILEGES;
+SQL
+Enter password: 
+ERROR 1007 (HY000) at line 1: Can't create database 'ormlearn'; database exists
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % >....                                                                                                 
+  st_date DATE,
+  st_open DECIMAL(10,2),
+  st_close DECIMAL(10,2),
+  st_volume BIGINT
+);-- Insert sample countries
+INSERT INTO country VALUES 
+('BV','Bouvet Island'),
+('DJ','Djibouti'),
+('GP','Guadeloupe'),
+('GS','South Georgia and the South Sandwich Islands'),
+('LU','Luxembourg'),
+('SS','South Sudan'),
+('TF','French Southern Territories'),
+('UM','United States Minor Outlying Islands'),
+('ZA','South Africa'),
+('ZM','Zambia'),
+('ZW','Zimbabwe');
+SQL
+Enter password: 
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u root -p ormlearn < payroll.sql
+zsh: no such file or directory: payroll.sql
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 25
+Server version: 9.2.0 Homebrew
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE ormlearn;
+ERROR 1007 (HY000): Can't create database 'ormlearn'; database exists
+mysql> USE ormlearn;
+
+CREATE TABLE department (
+  dp_id INT PRIMARY KEY AUTO_INCREMENT,
+  dp_name VARCHAR(255)
+);
+
+CREATE TABLE employee (
+  em_id INT PRIMARY KEY AUTO_INCREMENT,
+  em_name VARCHAR(255),
+  em_salary DOUBLE,
+  em_perReading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+manent BOOLEAN,
+  em_date_of_birth DATE,
+  em_dp_iDatabase changed
+mysql> 
+mysql> CREATE TABLE department (
+    ->   dp_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->   dp_name VARCHAR(255)
+    -> );
+
+CREATE TABLE employee (
+  em_id INT PRIMARY KEY AUTO_INCREMENT,
+  em_name VARCHAR(255),
+  em_salary DOUBLE,
+  em_permanent BOOLEAN,
+  em_date_of_birth DATE,
+  em_dp_id INT,
+  FOREIGN KEY (em_dp_id) REFERENCES department(dp_id)
+);
+
+CREATE TABLE skill (
+  sk_id INT PRQuery OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> CREATE TABLE employee (
+    ->   em_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->   em_name VARCHAR(255),
+    ->   em_salary DOUBLE,
+    ->   em_permanent BOOLEAN,
+    ->   em_date_of_birth DATE,
+    ->   em_dp_id INT,
+    ->   FOREIGN KEY (em_dp_id) REFERENCES department(dp_id)
+    -> );
+
+CREATE TABLE skill (
+  sk_id INT PRIMARY KEY AUTO_INCREMENT,
+  sk_name VARCHAR(255)
+);
+
+CREATE TABLE employee_skill (
+  es_id INT PRIMAQuery OK, 0 rows affected (0.02 sec)
+
+mysql> 
+mysql> CREATE TABLE skill (
+    ->   sk_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->   sk_name VARCHAR(255)
+    -> );
+
+CREATE TABLE employee_skill (
+  es_id INT PRIMARY KEY AUTO_INCREMENT,
+  es_em_id INT,
+  es_sk_id Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> CREATE TABLE employee_skill (
+    ->   es_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->   es_em_id INT,
+    ->   es_sk_id INT,
+    ->   FOREIGN KEY (es_em_id) REFERENCES employee(em_id),
+    ->   FOREIGN KEY (es_sk_id) REFERENCES skill(sk_id)
+    -> );
+
+-- Insert sample departments
+INSERT INTO department (dp_name) VALUES 
+('Human Resources'),
+('Finance'),
+('Engineering');
+
+-- Insert sample Query OK, 0 rows affected (0.02 sec)
+
+mysql> 
+mysql> -- Insert sample departments
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO department (dp_name) VALUES 
+    -> ('Human Resources'),
+    -> ('Finance'),
+    -> ('Engineering');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Insert sample skills
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO skill (sk_name) VALUES 
+    -> ('Java'),
+    -> ('Python'),
+    -> ('Spring Boot'),
+    -> ('SQL'),
+    -> ('React');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Insert sample employees
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO employee (em_name, em_salary, em_permanent, em_date_of_birth, em_dp_id) VALUES 
+    -> ('John Doe', 50000.0, true, '1990-01-01', 1),
+    -> ('Jane Smith', 60000.0, true, '1985-05-15', 2),
+    -> ('Bob Johnson', 55000.0, false, '1992-11-30', 3);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Assign skills to employees
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO employee_skill (es_em_id, es_sk_id) VALUES 
+    -> (1, 1),
+    -> (1, 3),
+    -> (2, 2),
+    -> (2, 4),
+    -> (3, 5),
+    -> (3, 1);
+Query OK, 6 rows affected (0.00 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Create country table
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE TABLE country(
+    ->   co_code VARCHAR(2) PRIMARY KEY,
+    ->   co_name VARCHAR(100)
+    -> );
+ERROR 1050 (42S01): Table 'country' already exists
+mysql> 
+mysql> -- Insert sample countries
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO country VALUES 
+    -> ('BV','Bouvet Island'),
+    -> ('DJ','Djibouti'),
+    -> ('GP','Guadeloupe'),
+    -> ('GS','South Georgia and the South Sandwich Islands'),
+    -> ('LU','Luxembourg'),
+    -> ('SS','South Sudan'),
+    -> ('TF','French Southern Territories'),
+    -> ('UM','United States Minor Outlying Islands'),
+    -> ('ZA','South Africa'),
+    -> ('ZM','Zambia'),
+    -> ('ZW','Zimbabwe');
+ERROR 1062 (23000): Duplicate entry 'BV' for key 'country.PRIMARY'
+mysql> 
+mysql> -- Create stock table
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE TABLE stock (
+    ->   st_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->   st_code VARCHAR(10), 
+    ->   st_date DATE,
+    ->   st_open DECIMAL(10,2),
+    ->   st_close DECIMAL(10,2), 
+    ->   st_volume BIGINT
+    -> );
+ERROR 1050 (42S01): Table 'stock' already exists
+mysql> 
+mysql> -- Insert sample stock data
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO stock (st_code, st_date, st_open, st_close, st_volume) VALUES 
+    -> ('FB','2019-09-03',184.00,182.39,9779400),
+    -> ('FB','2019-09-04',184.65,187.14,11308000),
+    -> ('FB','2019-09-05',188.53,190.90,13876700),
+    -> ('GOOGL','2019-04-22',1236.67,1253.76,954200),
+    -> ('GOOGL','2019-04-23',1256.64,1270.59,1593400),
+    -> ('NFLX','2018-12-24',242.00,233.88,9547600);
+Query OK, 6 rows affected (0.00 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Create user and grant privileges
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE USER 'springuser'@'localhost' IDENTIFIED BY 'springpass';
+GRANT ALL PRIVILEGES ON ormlearn.* TO 'springuser'@'locERROR 1396 (HY000): Operation CREATE USER failed for 'springuser'@'localhost'
+mysql> GRANT ALL PRIVILEGES ON ormlearn.* TO 'springuser'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> 
+mysql> -- Exit MySQL
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> EXIT;
+Bye
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u root -p <<EOF
+-- Paste all the SQL commands above starting from CREATE DATABASE...
+-- Make sure to include everything between <<EOF and EOF
+EOF
+Enter password: 
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % cd spring-jpa-project
+cd: no such file or directory: spring-jpa-project
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % spring.datasource.username=springuser
+spring.datasource.password=springpass
+zsh: command not found: spring.datasource.username=springuser
+zsh: command not found: spring.datasource.password=springpass
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % # Navigate to the project directory
+cd /Users/sujeetpanda/Desktop/experiment/spring-jpa-project
+
+# Update application.properties
+cat > src/main/resources/application.properties <<EOL
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/ormlearn?useSSL=false
+spring.datasource.username=springuser
+spring.datasource.password=springpass
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.show-sql=true
+logging.level.org.springframework=info
+logging.level.com.cognizant.ormlearn=debug
+EOL
+zsh: command not found: #
+zsh: command not found: #
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % mysql -u springuser -pspringpass ormlearn -e "SHOW TABLES;"
+mysql: [Warning] Using a password on the command line interface can be insecure.
++--------------------+
+| Tables_in_ormlearn |
++--------------------+
+| country            |
+| department         |
+| employee           |
+| employee_skill     |
+| skill              |
+| stock              |
++--------------------+
+sujeetpanda@Sujeets-MacBook-Air spring-jpa-project % # Build and run the Spring Boot application
+mvn clean package
+mvn spring-boot:run
+zsh: command not found: #
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/opt/homebrew/Cellar/maven/3.9.10/libexec/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.cognizant:orm-learn >-----------------------
+[INFO] Building orm-learn 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.1.0/maven-clean-plugin-3.1.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.1.0/maven-clean-plugin-3.1.0.pom (5.2 kB at 7.6 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jar-plugin/3.1.2/maven-jar-plugin-3.1.2.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jar-plugin/3.1.2/maven-jar-plugin-3.1.2.pom (7.3 kB at 38 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/tomcat-annotations-api/9.0.27/tomcat-annotations-api-9.0.27.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/tomcat-annotations-api/9.0.27/tomcat-annotations-api-9.0.27.pom (1.5 kB at 16 kB/s)
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ orm-learn ---
+[INFO] Deleting /Users/sujeetpanda/Desktop/experiment/spring-jpa-project/target
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ orm-learn ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ orm-learn ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 14 source files to /Users/sujeetpanda/Desktop/experiment/spring-jpa-project/target/classes
+[INFO] /Users/sujeetpanda/Desktop/experiment/spring-jpa-project/src/main/java/com/cognizant/ormlearn/OrmLearnApplication.java: /Users/sujeetpanda/Desktop/experiment/spring-jpa-project/src/main/java/com/cognizant/ormlearn/OrmLearnApplication.java uses or overrides a deprecated API.
+[INFO] /Users/sujeetpanda/Desktop/experiment/spring-jpa-project/src/main/java/com/cognizant/ormlearn/OrmLearnApplication.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- resources:3.1.0:testResources (default-testResources) @ orm-learn ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/sujeetpanda/Desktop/experiment/spring-jpa-project/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.8.1:testCompile (default-testCompile) @ orm-learn ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:2.22.2:test (default-test) @ orm-learn ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.1.2:jar (default-jar) @ orm-learn ---
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-archiver/3.4.0/maven-archiver-3.4.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-archiver/3.4.0/maven-archiver-3.4.0.pom (4.6 kB at 48 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/4.1.0/plexus-archiver-4.1.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/4.1.0/plexus-archiver-4.1.0.pom (4.8 kB at 48 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/3.1.1/plexus-io-3.1.1.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/3.1.1/plexus-io-3.1.1.pom (4.5 kB at 50 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.18/commons-compress-1.18.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.18/commons-compress-1.18.pom (18 kB at 141 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/tukaani/xz/1.8/xz-1.8.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/tukaani/xz/1.8/xz-1.8.pom (1.9 kB at 20 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.25/plexus-interpolation-1.25.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.25/plexus-interpolation-1.25.pom (2.6 kB at 27 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.2.0/plexus-utils-3.2.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.2.0/plexus-utils-3.2.0.pom (4.8 kB at 49 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-archiver/3.4.0/maven-archiver-3.4.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-archiver/3.4.0/maven-archiver-3.4.0.jar (24 kB at 179 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/4.1.0/plexus-archiver-4.1.0.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/3.1.1/plexus-io-3.1.1.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.18/commons-compress-1.18.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/tukaani/xz/1.8/xz-1.8.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.2.0/plexus-utils-3.2.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/4.1.0/plexus-archiver-4.1.0.jar (192 kB at 568 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/3.1.1/plexus-io-3.1.1.jar (75 kB at 180 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/tukaani/xz/1.8/xz-1.8.jar (109 kB at 243 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.2.0/plexus-utils-3.2.0.jar (263 kB at 488 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.18/commons-compress-1.18.jar (592 kB at 847 kB/s)
+[INFO] Building jar: /Users/sujeetpanda/Desktop/experiment/spring-jpa-project/target/orm-learn-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:2.2.0.RELEASE:repackage (repackage) @ orm-learn ---
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/2.2.0.RELEASE/spring-boot-loader-tools-2.2.0.RELEASE.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/2.2.0.RELEASE/spring-boot-loader-tools-2.2.0.RELEASE.pom (2.5 kB at 20 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.19/commons-compress-1.19.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.19/commons-compress-1.19.pom (18 kB at 180 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/3.3.9/maven-artifact-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/3.3.9/maven-artifact-3.3.9.pom (2.1 kB at 25 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven/3.3.9/maven-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven/3.3.9/maven-3.3.9.pom (24 kB at 206 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.9/commons-lang3-3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.9/commons-lang3-3.9.pom (28 kB at 278 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-core/3.3.9/maven-core-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-core/3.3.9/maven-core-3.3.9.pom (8.3 kB at 82 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-model/3.3.9/maven-model-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-model/3.3.9/maven-model-3.3.9.pom (4.0 kB at 43 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/3.3.9/maven-settings-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/3.3.9/maven-settings-3.3.9.pom (1.8 kB at 21 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings-builder/3.3.9/maven-settings-builder-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings-builder/3.3.9/maven-settings-builder-3.3.9.pom (2.6 kB at 24 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-builder-support/3.3.9/maven-builder-support-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-builder-support/3.3.9/maven-builder-support-3.3.9.pom (1.7 kB at 17 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/3.3.9/maven-repository-metadata-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/3.3.9/maven-repository-metadata-3.3.9.pom (1.9 kB at 18 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/3.3.9/maven-plugin-api-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/3.3.9/maven-plugin-api-3.3.9.pom (2.7 kB at 16 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/org.eclipse.sisu.plexus/0.3.2/org.eclipse.sisu.plexus-0.3.2.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/org.eclipse.sisu.plexus/0.3.2/org.eclipse.sisu.plexus-0.3.2.pom (4.2 kB at 38 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/sisu-plexus/0.3.2/sisu-plexus-0.3.2.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/sisu-plexus/0.3.2/sisu-plexus-0.3.2.pom (14 kB at 129 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.2/org.eclipse.sisu.inject-0.3.2.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.2/org.eclipse.sisu.inject-0.3.2.pom (2.6 kB at 27 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/sisu-inject/0.3.2/sisu-inject-0.3.2.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/sisu-inject/0.3.2/sisu-inject-0.3.2.pom (14 kB at 136 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.17/plexus-utils-3.0.17.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.17/plexus-utils-3.0.17.pom (3.4 kB at 34 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-model-builder/3.3.9/maven-model-builder-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-model-builder/3.3.9/maven-model-builder-3.3.9.pom (3.1 kB at 13 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/guava/guava/18.0/guava-18.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/guava/guava/18.0/guava-18.0.pom (5.7 kB at 44 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/18.0/guava-parent-18.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/18.0/guava-parent-18.0.pom (7.7 kB at 75 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.pom (4.0 kB at 44 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-api/1.0.2.v20150114/aether-api-1.0.2.v20150114.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-api/1.0.2.v20150114/aether-api-1.0.2.v20150114.pom (1.8 kB at 13 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether/1.0.2.v20150114/aether-1.0.2.v20150114.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether/1.0.2.v20150114/aether-1.0.2.v20150114.pom (29 kB at 231 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-spi/1.0.2.v20150114/aether-spi-1.0.2.v20150114.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-spi/1.0.2.v20150114/aether-spi-1.0.2.v20150114.pom (2.0 kB at 21 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-util/1.0.2.v20150114/aether-util-1.0.2.v20150114.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-util/1.0.2.v20150114/aether-util-1.0.2.v20150114.pom (2.1 kB at 24 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-impl/1.0.2.v20150114/aether-impl-1.0.2.v20150114.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-impl/1.0.2.v20150114/aether-impl-1.0.2.v20150114.pom (3.4 kB at 27 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/inject/guice/4.0/guice-4.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/inject/guice/4.0/guice-4.0.pom (11 kB at 103 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/inject/guice-parent/4.0/guice-parent-4.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/inject/guice-parent/4.0/guice-parent-4.0.pom (15 kB at 158 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/google/5/google-5.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/google/5/google-5.pom (2.5 kB at 24 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/3.1.0/maven-common-artifact-filters-3.1.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/3.1.0/maven-common-artifact-filters-3.1.0.pom (5.3 kB at 54 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/3.7.0/plexus-archiver-3.7.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/3.7.0/plexus-archiver-3.7.0.pom (4.8 kB at 51 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/3.1.0/plexus-io-3.1.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/3.1.0/plexus-io-3.1.0.pom (4.5 kB at 48 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-shade-plugin/3.2.1/maven-shade-plugin-3.2.1.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-shade-plugin/3.2.1/maven-shade-plugin-3.2.1.pom (9.3 kB at 83 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-artifact-transfer/0.10.0/maven-artifact-transfer-0.10.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-artifact-transfer/0.10.0/maven-artifact-transfer-0.10.0.pom (12 kB at 101 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/31/maven-shared-components-31.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/31/maven-shared-components-31.pom (5.1 kB at 33 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.13/commons-codec-1.13.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.13/commons-codec-1.13.pom (14 kB at 58 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/7.0/asm-7.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/7.0/asm-7.0.pom (2.9 kB at 29 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/7.0/asm-commons-7.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/7.0/asm-commons-7.0.pom (3.7 kB at 19 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/7.0/asm-tree-7.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/7.0/asm-tree-7.0.pom (3.1 kB at 18 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-analysis/7.0/asm-analysis-7.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-analysis/7.0/asm-analysis-7.0.pom (3.2 kB at 26 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/vafer/jdependency/2.1.1/jdependency-2.1.1.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/vafer/jdependency/2.1.1/jdependency-2.1.1.pom (11 kB at 98 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/7.0-beta/asm-7.0-beta.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/7.0-beta/asm-7.0-beta.pom (2.9 kB at 33 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-analysis/7.0-beta/asm-analysis-7.0-beta.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-analysis/7.0-beta/asm-analysis-7.0-beta.pom (3.2 kB at 34 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/7.0-beta/asm-tree-7.0-beta.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/7.0-beta/asm-tree-7.0-beta.pom (3.1 kB at 30 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/7.0-beta/asm-commons-7.0-beta.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/7.0-beta/asm-commons-7.0-beta.pom (3.7 kB at 39 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-util/7.0-beta/asm-util-7.0-beta.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-util/7.0-beta/asm-util-7.0-beta.pom (3.7 kB at 40 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0.pom (6.8 kB at 72 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/19.0/guava-parent-19.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/19.0/guava-parent-19.0.pom (9.9 kB at 95 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/2.2.0.RELEASE/spring-boot-loader-tools-2.2.0.RELEASE.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/2.2.0.RELEASE/spring-boot-loader-tools-2.2.0.RELEASE.jar (154 kB at 443 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.19/commons-compress-1.19.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.25/plexus-interpolation-1.25.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/3.3.9/maven-artifact-3.3.9.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.9/commons-lang3-3.9.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-core/3.3.9/maven-core-3.3.9.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/3.3.9/maven-artifact-3.3.9.jar (55 kB at 326 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings-builder/3.3.9/maven-settings-builder-3.3.9.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.25/plexus-interpolation-1.25.jar (85 kB at 304 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-builder-support/3.3.9/maven-builder-support-3.3.9.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-builder-support/3.3.9/maven-builder-support-3.3.9.jar (15 kB at 22 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/3.3.9/maven-repository-metadata-3.3.9.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/3.3.9/maven-repository-metadata-3.3.9.jar (27 kB at 34 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-model-builder/3.3.9/maven-model-builder-3.3.9.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-core/3.3.9/maven-core-3.3.9.jar (638 kB at 763 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings-builder/3.3.9/maven-settings-builder-3.3.9.jar (43 kB at 46 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-spi/1.0.2.v20150114/aether-spi-1.0.2.v20150114.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-model-builder/3.3.9/maven-model-builder-3.3.9.jar (177 kB at 186 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-impl/1.0.2.v20150114/aether-impl-1.0.2.v20150114.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.jar (67 kB at 70 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-api/1.0.2.v20150114/aether-api-1.0.2.v20150114.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.19/commons-compress-1.19.jar (615 kB at 580 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-util/1.0.2.v20150114/aether-util-1.0.2.v20150114.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.9/commons-lang3-3.9.jar (504 kB at 475 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/org.eclipse.sisu.plexus/0.3.2/org.eclipse.sisu.plexus-0.3.2.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-impl/1.0.2.v20150114/aether-impl-1.0.2.v20150114.jar (173 kB at 159 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.2/org.eclipse.sisu.inject-0.3.2.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-api/1.0.2.v20150114/aether-api-1.0.2.v20150114.jar (136 kB at 123 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/inject/guice/4.0/guice-4.0-no_aop.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-spi/1.0.2.v20150114/aether-spi-1.0.2.v20150114.jar (31 kB at 27 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-classworlds/2.5.2/plexus-classworlds-2.5.2.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.2/org.eclipse.sisu.inject-0.3.2.jar (378 kB at 294 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.6/plexus-component-annotations-1.6.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/aether/aether-util/1.0.2.v20150114/aether-util-1.0.2.v20150114.jar (147 kB at 113 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-model/3.3.9/maven-model-3.3.9.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.6/plexus-component-annotations-1.6.jar (4.3 kB at 3.1 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/3.3.9/maven-plugin-api-3.3.9.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-classworlds/2.5.2/plexus-classworlds-2.5.2.jar (53 kB at 37 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/3.3.9/maven-settings-3.3.9.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/eclipse/sisu/org.eclipse.sisu.plexus/0.3.2/org.eclipse.sisu.plexus-0.3.2.jar (205 kB at 140 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/3.1.0/maven-common-artifact-filters-3.1.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/3.3.9/maven-plugin-api-3.3.9.jar (47 kB at 32 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/3.7.0/plexus-archiver-3.7.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/inject/guice/4.0/guice-4.0-no_aop.jar (424 kB at 288 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/3.1.0/plexus-io-3.1.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-model/3.3.9/maven-model-3.3.9.jar (164 kB at 107 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-shade-plugin/3.2.1/maven-shade-plugin-3.2.1.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/3.7.0/plexus-archiver-3.7.0.jar (192 kB at 121 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-artifact-transfer/0.10.0/maven-artifact-transfer-0.10.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/3.1.0/plexus-io-3.1.0.jar (75 kB at 45 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.13/commons-codec-1.13.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-artifact-transfer/0.10.0/maven-artifact-transfer-0.10.0.jar (128 kB at 75 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/7.0/asm-7.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/3.3.9/maven-settings-3.3.9.jar (44 kB at 26 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/7.0/asm-commons-7.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/3.1.0/maven-common-artifact-filters-3.1.0.jar (61 kB at 36 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/7.0/asm-tree-7.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-shade-plugin/3.2.1/maven-shade-plugin-3.2.1.jar (114 kB at 65 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-analysis/7.0/asm-analysis-7.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/7.0/asm-7.0.jar (114 kB at 63 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/vafer/jdependency/2.1.1/jdependency-2.1.1.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-analysis/7.0/asm-analysis-7.0.jar (33 kB at 18 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-util/7.0-beta/asm-util-7.0-beta.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/7.0/asm-tree-7.0.jar (50 kB at 27 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.13/commons-codec-1.13.jar (344 kB at 180 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/vafer/jdependency/2.1.1/jdependency-2.1.1.jar (186 kB at 97 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-util/7.0-beta/asm-util-7.0-beta.jar (81 kB at 40 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/7.0/asm-commons-7.0.jar (80 kB at 39 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/guava/guava/19.0/guava-19.0.jar (2.3 MB at 510 kB/s)
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  15.377 s
+[INFO] Finished at: 2025-07-03T11:19:38+05:30
+[INFO] ------------------------------------------------------------------------
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/opt/homebrew/Cellar/maven/3.9.10/libexec/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.cognizant:orm-learn >-----------------------
+[INFO] Building orm-learn 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:2.2.0.RELEASE:run (default-cli) > test-compile @ orm-learn >>>
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ orm-learn ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ orm-learn ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.1.0:testResources (default-testResources) @ orm-learn ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/sujeetpanda/Desktop/experiment/spring-jpa-project/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.8.1:testCompile (default-testCompile) @ orm-learn ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:2.2.0.RELEASE:run (default-cli) < test-compile @ orm-learn <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:2.2.0.RELEASE:run (default-cli) @ orm-learn ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.0.RELEASE)
+
+2025-07-03 11:19:45.626  INFO 42679 --- [           main] c.c.ormlearn.OrmLearnApplication         : Starting OrmLearnApplication on Sujeets-MacBook-Air.local with PID 42679 (/Users/sujeetpanda/Desktop/experiment/spring-jpa-project/target/classes started by sujeetpanda in /Users/sujeetpanda/Desktop/experiment/spring-jpa-project)
+2025-07-03 11:19:45.627 DEBUG 42679 --- [           main] c.c.ormlearn.OrmLearnApplication         : Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+2025-07-03 11:19:45.627  INFO 42679 --- [           main] c.c.ormlearn.OrmLearnApplication         : No active profile set, falling back to default profiles: default
+2025-07-03 11:19:45.874  INFO 42679 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2025-07-03 11:19:45.908  INFO 42679 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30ms. Found 5 repository interfaces.
+2025-07-03 11:19:46.050  INFO 42679 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (file:/Users/sujeetpanda/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/9.0.27/tomcat-embed-core-9.0.27.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2025-07-03 11:19:46.186  INFO 42679 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-07-03 11:19:46.192  INFO 42679 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-03 11:19:46.192  INFO 42679 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2025-07-03 11:19:46.235  INFO 42679 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-03 11:19:46.235  INFO 42679 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 575 ms
+2025-07-03 11:19:46.308  INFO 42679 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-03 11:19:46.339  INFO 42679 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2025-07-03 11:19:46.392  INFO 42679 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2025-07-03 11:19:46.427  INFO 42679 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-03 11:19:46.519  INFO 42679 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-03 11:19:46.525  INFO 42679 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-07-03 11:19:46.845  INFO 42679 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-07-03 11:19:46.847  INFO 42679 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-03 11:19:46.998  WARN 42679 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-03 11:19:47.121  INFO 42679 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-07-03 11:19:47.209  INFO 42679 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-07-03 11:19:47.210  INFO 42679 --- [           main] c.c.ormlearn.OrmLearnApplication         : Started OrmLearnApplication in 6.792 seconds (JVM running for 6.957)
+
+=== Countries containing 'ou' ===
+Hibernate: select country0_.co_code as co_code1_0_, country0_.co_name as co_name2_0_ from country country0_ where upper(country0_.co_name) like upper(?) escape ?
+BV Bouvet Island
+DJ Djibouti
+GP Guadeloupe
+GS South Georgia and the South Sandwich Islands
+LU Luxembourg
+SS South Sudan
+TF French Southern Territories
+UM United States Minor Outlying Islands
+ZA South Africa
+
+=== Countries containing 'ou' (sorted) ===
+Hibernate: select country0_.co_code as co_code1_0_, country0_.co_name as co_name2_0_ from country country0_ where upper(country0_.co_name) like upper(?) escape ? order by country0_.co_name asc
+BV Bouvet Island
+DJ Djibouti
+TF French Southern Territories
+GP Guadeloupe
+LU Luxembourg
+ZA South Africa
+GS South Georgia and the South Sandwich Islands
+SS South Sudan
+UM United States Minor Outlying Islands
+
+=== Countries starting with 'Z' ===
+Hibernate: select country0_.co_code as co_code1_0_, country0_.co_name as co_name2_0_ from country country0_ where country0_.co_name like ? escape ?
+ZM Zambia
+ZW Zimbabwe
+
+=== FB Stocks in Sep 2019 ===
+Hibernate: select stock0_.st_id as st_id1_5_, stock0_.st_close as st_close2_5_, stock0_.st_code as st_code3_5_, stock0_.st_date as st_date4_5_, stock0_.st_open as st_open5_5_, stock0_.st_volume as st_volum6_5_ from stock stock0_ where stock0_.st_code=? and (stock0_.st_date between ? and ?)
+FB 2019-09-03 00:00:00.0 184.0 182.39 9779400
+FB 2019-09-04 00:00:00.0 184.65 187.14 11308000
+FB 2019-09-05 00:00:00.0 188.53 190.9 13876700
+
+=== Google stocks > 1250 ===
+Hibernate: select stock0_.st_id as st_id1_5_, stock0_.st_close as st_close2_5_, stock0_.st_code as st_code3_5_, stock0_.st_date as st_date4_5_, stock0_.st_open as st_open5_5_, stock0_.st_volume as st_volum6_5_ from stock stock0_ where stock0_.st_code=? and stock0_.st_close>?
+GOOGL 2019-04-22 00:00:00.0 1236.67 1253.76 954200
+GOOGL 2019-04-23 00:00:00.0 1256.64 1270.59 1593400
+
+=== Top 3 volumes ===
+Hibernate: select stock0_.st_id as st_id1_5_, stock0_.st_close as st_close2_5_, stock0_.st_code as st_code3_5_, stock0_.st_date as st_date4_5_, stock0_.st_open as st_open5_5_, stock0_.st_volume as st_volum6_5_ from stock stock0_ order by stock0_.st_volume desc limit ?
+FB 2019-09-05 00:00:00.0 188.53 190.9 13876700
+FB 2019-09-04 00:00:00.0 184.65 187.14 11308000
+FB 2019-09-03 00:00:00.0 184.0 182.39 9779400
+
+=== 3 Lowest NFLX stocks ===
+Hibernate: select stock0_.st_id as st_id1_5_, stock0_.st_close as st_close2_5_, stock0_.st_code as st_code3_5_, stock0_.st_date as st_date4_5_, stock0_.st_open as st_open5_5_, stock0_.st_volume as st_volum6_5_ from stock stock0_ where stock0_.st_code=? order by stock0_.st_close asc limit ?
+NFLX 2018-12-24 00:00:00.0 242.0 233.88 9547600
+
+=== Get Employee with Department and Skills ===
+Hibernate: select employee0_.em_id as em_id1_2_0_, employee0_.em_date_of_birth as em_date_2_2_0_, employee0_.em_dp_id as em_dp_id6_2_0_, employee0_.em_name as em_name3_2_0_, employee0_.em_permanent as em_perma4_2_0_, employee0_.em_salary as em_salar5_2_0_, department1_.dp_id as dp_id1_1_1_, department1_.dp_name as dp_name2_1_1_, skilllist2_.es_em_id as es_em_id1_3_2_, skill3_.sk_id as es_sk_id2_3_2_, skill3_.sk_id as sk_id1_4_3_, skill3_.sk_name as sk_name2_4_3_ from employee employee0_ left outer join department department1_ on employee0_.em_dp_id=department1_.dp_id left outer join employee_skill skilllist2_ on employee0_.em_id=skilllist2_.es_em_id left outer join skill skill3_ on skilllist2_.es_sk_id=skill3_.sk_id where employee0_.em_id=?
+Hibernate: select employeeli0_.em_dp_id as em_dp_id6_2_0_, employeeli0_.em_id as em_id1_2_0_, employeeli0_.em_id as em_id1_2_1_, employeeli0_.em_date_of_birth as em_date_2_2_1_, employeeli0_.em_dp_id as em_dp_id6_2_1_, employeeli0_.em_name as em_name3_2_1_, employeeli0_.em_permanent as em_perma4_2_1_, employeeli0_.em_salary as em_salar5_2_1_ from employee employeeli0_ where employeeli0_.em_dp_id=?
+Employee: 1 John Doe 50000.0 true 1990-01-01 00:00:00.0
+Department: 1 Human Resources
+Skills: [1 Java, 3 Spring Boot]
+
+=== Add New Employee ===
+Hibernate: select department0_.dp_id as dp_id1_1_0_, department0_.dp_name as dp_name2_1_0_, employeeli1_.em_dp_id as em_dp_id6_2_1_, employeeli1_.em_id as em_id1_2_1_, employeeli1_.em_id as em_id1_2_2_, employeeli1_.em_date_of_birth as em_date_2_2_2_, employeeli1_.em_dp_id as em_dp_id6_2_2_, employeeli1_.em_name as em_name3_2_2_, employeeli1_.em_permanent as em_perma4_2_2_, employeeli1_.em_salary as em_salar5_2_2_, skilllist2_.es_em_id as es_em_id1_3_3_, skill3_.sk_id as es_sk_id2_3_3_, skill3_.sk_id as sk_id1_4_4_, skill3_.sk_name as sk_name2_4_4_ from department department0_ left outer join employee employeeli1_ on department0_.dp_id=employeeli1_.em_dp_id left outer join employee_skill skilllist2_ on employeeli1_.em_id=skilllist2_.es_em_id left outer join skill skill3_ on skilllist2_.es_sk_id=skill3_.sk_id where department0_.dp_id=?
+Hibernate: insert into employee (em_date_of_birth, em_dp_id, em_name, em_permanent, em_salary) values (?, ?, ?, ?, ?)
+Added: 4 John Doe 50000.0 true Mon Jan 01 00:00:00 IST 1990
+
+=== Update Employee ===
+Hibernate: select employee0_.em_id as em_id1_2_0_, employee0_.em_date_of_birth as em_date_2_2_0_, employee0_.em_dp_id as em_dp_id6_2_0_, employee0_.em_name as em_name3_2_0_, employee0_.em_permanent as em_perma4_2_0_, employee0_.em_salary as em_salar5_2_0_, department1_.dp_id as dp_id1_1_1_, department1_.dp_name as dp_name2_1_1_, skilllist2_.es_em_id as es_em_id1_3_2_, skill3_.sk_id as es_sk_id2_3_2_, skill3_.sk_id as sk_id1_4_3_, skill3_.sk_name as sk_name2_4_3_ from employee employee0_ left outer join department department1_ on employee0_.em_dp_id=department1_.dp_id left outer join employee_skill skilllist2_ on employee0_.em_id=skilllist2_.es_em_id left outer join skill skill3_ on skilllist2_.es_sk_id=skill3_.sk_id where employee0_.em_id=?
+Hibernate: select employeeli0_.em_dp_id as em_dp_id6_2_0_, employeeli0_.em_id as em_id1_2_0_, employeeli0_.em_id as em_id1_2_1_, employeeli0_.em_date_of_birth as em_date_2_2_1_, employeeli0_.em_dp_id as em_dp_id6_2_1_, employeeli0_.em_name as em_name3_2_1_, employeeli0_.em_permanent as em_perma4_2_1_, employeeli0_.em_salary as em_salar5_2_1_ from employee employeeli0_ where employeeli0_.em_dp_id=?
+Hibernate: select skilllist0_.es_em_id as es_em_id1_3_0_, skilllist0_.es_sk_id as es_sk_id2_3_0_, skill1_.sk_id as sk_id1_4_1_, skill1_.sk_name as sk_name2_4_1_ from employee_skill skilllist0_ inner join skill skill1_ on skilllist0_.es_sk_id=skill1_.sk_id where skilllist0_.es_em_id=?
+Hibernate: select department0_.dp_id as dp_id1_1_0_, department0_.dp_name as dp_name2_1_0_, employeeli1_.em_dp_id as em_dp_id6_2_1_, employeeli1_.em_id as em_id1_2_1_, employeeli1_.em_id as em_id1_2_2_, employeeli1_.em_date_of_birth as em_date_2_2_2_, employeeli1_.em_dp_id as em_dp_id6_2_2_, employeeli1_.em_name as em_name3_2_2_, employeeli1_.em_permanent as em_perma4_2_2_, employeeli1_.em_salary as em_salar5_2_2_, skilllist2_.es_em_id as es_em_id1_3_3_, skill3_.sk_id as es_sk_id2_3_3_, skill3_.sk_id as sk_id1_4_4_, skill3_.sk_name as sk_name2_4_4_ from department department0_ left outer join employee employeeli1_ on department0_.dp_id=employeeli1_.em_dp_id left outer join employee_skill skilllist2_ on employeeli1_.em_id=skilllist2_.es_em_id left outer join skill skill3_ on skilllist2_.es_sk_id=skill3_.sk_id where department0_.dp_id=?
+Hibernate: select employee0_.em_id as em_id1_2_0_, employee0_.em_date_of_birth as em_date_2_2_0_, employee0_.em_dp_id as em_dp_id6_2_0_, employee0_.em_name as em_name3_2_0_, employee0_.em_permanent as em_perma4_2_0_, employee0_.em_salary as em_salar5_2_0_ from employee employee0_ where employee0_.em_id=?
+Hibernate: select department0_.dp_id as dp_id1_1_0_, department0_.dp_name as dp_name2_1_0_ from department department0_ where department0_.dp_id=?
+Hibernate: select skilllist0_.es_em_id as es_em_id1_3_0_, skilllist0_.es_sk_id as es_sk_id2_3_0_, skill1_.sk_id as sk_id1_4_1_, skill1_.sk_name as sk_name2_4_1_ from employee_skill skilllist0_ inner join skill skill1_ on skilllist0_.es_sk_id=skill1_.sk_id where skilllist0_.es_em_id=?
+Hibernate: select employeeli0_.em_dp_id as em_dp_id6_2_0_, employeeli0_.em_id as em_id1_2_0_, employeeli0_.em_id as em_id1_2_1_, employeeli0_.em_date_of_birth as em_date_2_2_1_, employeeli0_.em_dp_id as em_dp_id6_2_1_, employeeli0_.em_name as em_name3_2_1_, employeeli0_.em_permanent as em_perma4_2_1_, employeeli0_.em_salary as em_salar5_2_1_ from employee employeeli0_ where employeeli0_.em_dp_id=?
+Hibernate: select skilllist0_.es_em_id as es_em_id1_3_0_, skilllist0_.es_sk_id as es_sk_id2_3_0_, skill1_.sk_id as sk_id1_4_1_, skill1_.sk_name as sk_name2_4_1_ from employee_skill skilllist0_ inner join skill skill1_ on skilllist0_.es_sk_id=skill1_.sk_id where skilllist0_.es_em_id=?
+Hibernate: select department0_.dp_id as dp_id1_1_0_, department0_.dp_name as dp_name2_1_0_, employeeli1_.em_dp_id as em_dp_id6_2_1_, employeeli1_.em_id as em_id1_2_1_, employeeli1_.em_id as em_id1_2_2_, employeeli1_.em_date_of_birth as em_date_2_2_2_, employeeli1_.em_dp_id as em_dp_id6_2_2_, employeeli1_.em_name as em_name3_2_2_, employeeli1_.em_permanent as em_perma4_2_2_, employeeli1_.em_salary as em_salar5_2_2_, skilllist2_.es_em_id as es_em_id1_3_3_, skill3_.sk_id as es_sk_id2_3_3_, skill3_.sk_id as sk_id1_4_4_, skill3_.sk_name as sk_name2_4_4_ from department department0_ left outer join employee employeeli1_ on department0_.dp_id=employeeli1_.em_dp_id left outer join employee_skill skilllist2_ on employeeli1_.em_id=skilllist2_.es_em_id left outer join skill skill3_ on skilllist2_.es_sk_id=skill3_.sk_id where department0_.dp_id=?
+Hibernate: update employee set em_date_of_birth=?, em_dp_id=?, em_name=?, em_permanent=?, em_salary=? where em_id=?
+Updated: 1 John Doe 50000.0 true 1990-01-01 00:00:00.0
+
+=== Get Department with Employees ===
+Hibernate: select department0_.dp_id as dp_id1_1_0_, department0_.dp_name as dp_name2_1_0_, employeeli1_.em_dp_id as em_dp_id6_2_1_, employeeli1_.em_id as em_id1_2_1_, employeeli1_.em_id as em_id1_2_2_, employeeli1_.em_date_of_birth as em_date_2_2_2_, employeeli1_.em_dp_id as em_dp_id6_2_2_, employeeli1_.em_name as em_name3_2_2_, employeeli1_.em_permanent as em_perma4_2_2_, employeeli1_.em_salary as em_salar5_2_2_, skilllist2_.es_em_id as es_em_id1_3_3_, skill3_.sk_id as es_sk_id2_3_3_, skill3_.sk_id as sk_id1_4_4_, skill3_.sk_name as sk_name2_4_4_ from department department0_ left outer join employee employeeli1_ on department0_.dp_id=employeeli1_.em_dp_id left outer join employee_skill skilllist2_ on employeeli1_.em_id=skilllist2_.es_em_id left outer join skill skill3_ on skilllist2_.es_sk_id=skill3_.sk_id where department0_.dp_id=?
+Department: Human Resources
+ - John Doe
+
+=== Add Skill to Employee ===
+Hibernate: select employee0_.em_id as em_id1_2_0_, employee0_.em_date_of_birth as em_date_2_2_0_, employee0_.em_dp_id as em_dp_id6_2_0_, employee0_.em_name as em_name3_2_0_, employee0_.em_permanent as em_perma4_2_0_, employee0_.em_salary as em_salar5_2_0_, department1_.dp_id as dp_id1_1_1_, department1_.dp_name as dp_name2_1_1_, skilllist2_.es_em_id as es_em_id1_3_2_, skill3_.sk_id as es_sk_id2_3_2_, skill3_.sk_id as sk_id1_4_3_, skill3_.sk_name as sk_name2_4_3_ from employee employee0_ left outer join department department1_ on employee0_.em_dp_id=department1_.dp_id left outer join employee_skill skilllist2_ on employee0_.em_id=skilllist2_.es_em_id left outer join skill skill3_ on skilllist2_.es_sk_id=skill3_.sk_id where employee0_.em_id=?
+Hibernate: select employeeli0_.em_dp_id as em_dp_id6_2_0_, employeeli0_.em_id as em_id1_2_0_, employeeli0_.em_id as em_id1_2_1_, employeeli0_.em_date_of_birth as em_date_2_2_1_, employeeli0_.em_dp_id as em_dp_id6_2_1_, employeeli0_.em_name as em_name3_2_1_, employeeli0_.em_permanent as em_perma4_2_1_, employeeli0_.em_salary as em_salar5_2_1_ from employee employeeli0_ where employeeli0_.em_dp_id=?
+Hibernate: select skilllist0_.es_em_id as es_em_id1_3_0_, skilllist0_.es_sk_id as es_sk_id2_3_0_, skill1_.sk_id as sk_id1_4_1_, skill1_.sk_name as sk_name2_4_1_ from employee_skill skilllist0_ inner join skill skill1_ on skilllist0_.es_sk_id=skill1_.sk_id where skilllist0_.es_em_id=?
+Hibernate: select skill0_.sk_id as sk_id1_4_0_, skill0_.sk_name as sk_name2_4_0_ from skill skill0_ where skill0_.sk_id=?
+Hibernate: select employee0_.em_id as em_id1_2_0_, employee0_.em_date_of_birth as em_date_2_2_0_, employee0_.em_dp_id as em_dp_id6_2_0_, employee0_.em_name as em_name3_2_0_, employee0_.em_permanent as em_perma4_2_0_, employee0_.em_salary as em_salar5_2_0_ from employee employee0_ where employee0_.em_id=?
+Hibernate: select department0_.dp_id as dp_id1_1_0_, department0_.dp_name as dp_name2_1_0_ from department department0_ where department0_.dp_id=?
+Hibernate: select skilllist0_.es_em_id as es_em_id1_3_0_, skilllist0_.es_sk_id as es_sk_id2_3_0_, skill1_.sk_id as sk_id1_4_1_, skill1_.sk_name as sk_name2_4_1_ from employee_skill skilllist0_ inner join skill skill1_ on skilllist0_.es_sk_id=skill1_.sk_id where skilllist0_.es_em_id=?
+Hibernate: select employeeli0_.em_dp_id as em_dp_id6_2_0_, employeeli0_.em_id as em_id1_2_0_, employeeli0_.em_id as em_id1_2_1_, employeeli0_.em_date_of_birth as em_date_2_2_1_, employeeli0_.em_dp_id as em_dp_id6_2_1_, employeeli0_.em_name as em_name3_2_1_, employeeli0_.em_permanent as em_perma4_2_1_, employeeli0_.em_salary as em_salar5_2_1_ from employee employeeli0_ where employeeli0_.em_dp_id=?
+Hibernate: select skilllist0_.es_em_id as es_em_id1_3_0_, skilllist0_.es_sk_id as es_sk_id2_3_0_, skill1_.sk_id as sk_id1_4_1_, skill1_.sk_name as sk_name2_4_1_ from employee_skill skilllist0_ inner join skill skill1_ on skilllist0_.es_sk_id=skill1_.sk_id where skilllist0_.es_em_id=?
+Added skill: Spring Boot to John Doe

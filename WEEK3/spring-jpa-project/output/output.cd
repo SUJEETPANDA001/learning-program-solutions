@@ -1,0 +1,23 @@
+sujeetpanda@Sujeets-MacBook-Air experiment % mysql -u springuser -pspringpass ormlearn -e "SELECT * FROM employee;"
+mysql -u springuser -pspringpass ormlearn -e "SELECT * FROM employee_skill;"
+mysql: [Warning] Using a password on the command line interface can be insecure.
++-------+-------------+-----------+--------------+------------------+----------+
+| em_id | em_name     | em_salary | em_permanent | em_date_of_birth | em_dp_id |
++-------+-------------+-----------+--------------+------------------+----------+
+|     1 | John Doe    |     50000 |            1 | 1990-01-01       |        2 |
+|     2 | Jane Smith  |     60000 |            1 | 1985-05-15       |        2 |
+|     3 | Bob Johnson |     55000 |            0 | 1992-11-30       |        3 |
+|     4 | John Doe    |     50000 |            1 | 1990-01-01       |        1 |
++-------+-------------+-----------+--------------+------------------+----------+
+mysql: [Warning] Using a password on the command line interface can be insecure.
++-------+----------+----------+
+| es_id | es_em_id | es_sk_id |
++-------+----------+----------+
+|     1 |        1 |        1 |
+|     2 |        1 |        3 |
+|     3 |        2 |        2 |
+|     4 |        2 |        4 |
+|     5 |        3 |        5 |
+|     6 |        3 |        1 |
++-------+----------+----------+
+sujeetpanda@Sujeets-MacBook-Air experiment % 
