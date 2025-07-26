@@ -1,0 +1,59 @@
+/* TrainerList.css */
+
+.trainer-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+  background: #f7f9fc;
+}
+
+.trainer-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  width: 280px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.trainer-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.trainer-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #4f8cff;
+}
+
+.trainer-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.trainer-subject {
+  font-size: 1rem;
+  color: #4f8cff;
+  margin-bottom: 0.5rem;
+}
+
+.trainer-skills {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.trainer-bio {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}

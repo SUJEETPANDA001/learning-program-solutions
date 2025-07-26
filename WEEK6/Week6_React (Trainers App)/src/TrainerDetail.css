@@ -1,0 +1,19 @@
+/* Add to TrainerList.css or create TrainerDetail.css */
+.trainer-detail {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 2rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.trainer-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 1rem;
+  border: 3px solid #4f8cff;
+}
