@@ -1,0 +1,34 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  gap: 12px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.register-form input {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.register-form button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.register-form button:hover {
+  background-color: #218838;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+}
